@@ -1,12 +1,7 @@
-[创建 QQ 群及捐赠渠道](https://baijunyao.com/article/124)  
-
 ## 链接
-- 博客：http://baijunyao.com  
-- github：https://github.com/baijunyao/thinkphp-bjyblog  
-- gitee：https://gitee.com/baijunyao/thinkbjy  
+- 博客：http://8.134.160.66  
+- github：https://github.com/bigqiang9/blog  
 
-## 相关链接
-[开源项目系列之thinkphp-bjyblog博客](http://baijunyao.com/article/104)  
 
 ## 简介
 闲暇之时使用thinkphp开发了一个个人博客用来整理技能知识；  
@@ -17,9 +12,6 @@
 
 此博客程序前后台页面以及逻辑代码的都由我手工打造；没有版权限制；可以随意折腾；
 
-想研究支付宝、微信支付、邮件发送、短信通知验证码发送、oss云存储、融云即时通讯、友盟推送、Memcached缓存、权限管理、等更多功能的可以参考进阶版的bjyadmin https://github.com/baijunyao/thinkphp-bjyadmin  
-
-这还有个使用 laravel 开发的博客 [https://github.com/baijunyao/laravel-bjyblog](https://github.com/baijunyao/laravel-bjyblog)   
 
 ## 使用说明
 1. 请将项目内的所有文件直接放在根目录下；不要多层目录；  
@@ -29,7 +21,7 @@
 请将/Application/Common/Conf/config.php中的URL_MODEL改为2以优化url  
 未开启路由：http://baijunyao.com/index.php/Home/Index/article/aid/60  
 开启路由后：http://baijunyao.com/article/60
-4. 把根目录下的robots.txt中的baijunyao.com改为自己的域名；
+4. 把根目录下的robots.txt中的8.134.160.66改为自己的域名；
 5. 可以在用户管理中；将第三方账号标记为站长；然后后台就必须使用第三方账号登录以增强安全性；
 
 ## 针对thinkphp的改进优化；
