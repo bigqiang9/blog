@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加文件</title>
+    <bootstrapcss />
+    <icheckcss />
+</head>
+<body>
+<form class="form-group" action="{:U('Admin/File/add')}" method="post">
+    <table class="table table-bordered table-striped table-hover table-condensed">
+        <tr>
+            <th>文件名称</th>
+            <td>
+                <input class="form-control modal-sm" type="text" name="fname">
+            </td>
+        </tr>
+        <tr>
+            <th>上传文件</th>
+            <td>
+                <span id="img-list-box" style="margin-left: 25px;"></span>
+                <span style="display:inline-block;height: 30px;position: relative;top:0px;left:0px;">
+                    <a style="display: inline-block;width: 100px;height:30px;line-height: 30px;text-align:center;background: #F60;color: #FFF;">图片上传</a>
+                    <input type="file" name="img_src" style="width: 100px;border: 1px solid red;position: absolute;top:0px;left: 0px;height: 30px;opacity: 0;" id="up-img-file" onchange="upimg(this)"/>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th>上传地址</th>
+            <td>
+                <input class="form-control modal-sm" type="text" name="upload_path" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>文件描述</th>
+            <td>
+                <input class="form-control modal-sm" type="text" name="description">
+            </td>
+        </tr>
+        <tr>
+            <th>排序</th>
+            <td>
+                <input class="form-control modal-sm" type="text" name="sort">
+            </td>
+        </tr>
+        <tr>
+            <th>是否显示</th>
+            <td>
+                <span class="inputword">是</span>
+                <input id="test" class="icheck" type="radio" name="is_show" value="1" checked="checked">
+                &emsp;
+                <span class="inputword">否</span>
+                <input class="icheck" type="radio" name="is_show" value="0">                
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <input class="btn btn-success" type="submit" value="添加">
+            </td>
+        </tr>
+    </table>
+</form>
+<bootstrapjs />
+<icheckjs />
+<script type="text/javascript">
+    function upimg(obj)
+    {
+        if( obj.value == "" ) {
+            return;
+        }
+        var formdata = new FormData();
+        //<input type="file" name="img" value="" />
+        formdata.append("img" , $(obj)[0].files[0]);//获取文件法二
+        $.ajax({
+            type : 'post',
+            url : "{:U('Admin/File/upimg')}", //接口
+            data : formdata,
+            cache : false,
+            processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+            contentType : false, // 不设置Content-type请求头
+            success : function(response){
+                // console.log(response);
+                $('input[name="upload_path"]').val(response);
+                var html = '<div style="position: relative;margin-right: 20px;margin-bottom: 15px;width: 132px;display: inline-block;border: 1px solid #CCC;background:#EEE;">'
+                    +'<span style="display: block;width: 120px;height: 80px;border: 1px solid #F2F1F0;margin: 5px;overflow: hidden;">'
+                    +'<img src="'+response+'" style="width: 100%;" />'
+                    +'</span>'
+                    +'<input type="hidden" name="imgs[]" value="'+response+'" />'
+                    +'<a onclick="delImg(this);" style="z-index: 10;display: block;top: -8px;cursor:pointer;right: -8px;position:absolute;width: 20px;height: 20px;background: #CCC;border-radius:100%;text-align:center;line-height: 20px;border: 1px solid #C1C1C1;color: #555;">X</a>'
+                    +'</div>';
+
+                $('#img-list-box').append(html);
+            },
+            error : function(){ }
+        });
+    }
+
+    function delImg(obj)
+    {
+        postData={"upload_path":$('input[name="upload_path"]').val()};
+
+        $.post("{:U('Admin/File/delimg')}", postData, function(data) {
+            $(obj).parent('div').remove();
+            $('input[name="upload_path"]').val("");
+        });
+
+    }
+</script>
+</body>
+</html>
