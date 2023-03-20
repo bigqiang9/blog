@@ -19,8 +19,8 @@
 2. 后台登录密码默认为admin；
 3. 如果确认开启了mod_rewrite  
 请将/Application/Common/Conf/config.php中的URL_MODEL改为2以优化url  
-未开启路由：http://baijunyao.com/index.php/Home/Index/article/aid/60  
-开启路由后：http://baijunyao.com/article/60
+未开启路由：http://8.134.160.66/index.php/Home/Index/article/aid/27  
+开启路由后：http://8.134.160.66/article/27
 4. 把根目录下的robots.txt中的8.134.160.66改为自己的域名；
 5. 可以在用户管理中；将第三方账号标记为站长；然后后台就必须使用第三方账号登录以增强安全性；
 
